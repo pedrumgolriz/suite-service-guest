@@ -2,7 +2,8 @@
 
 This is the guest side app of SuiteServices
 
-![Preview of Splash Screen](http://i.imgur.com/U8TMWdX.gif)
+![Preview of Splash Screen]!(https://raw.githubusercontent.com/showhaus/suite-service-guest/master/app/images/suite.gif)
+
 
 
 ## Build & development

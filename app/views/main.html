@@ -1,0 +1,67 @@
+<div id="home-wrapper">
+  <div id="bg-video-section" ng-if="!user">
+    <div class="overlay-bg"></div>
+    <div class="container">
+      <div class="main-slider" ng-if="firstTimeVisitor">
+        <div class="slider-content text-center">
+          <div class="slider-logo">
+            <img class="suiteServicesLogo" src="images/concierge-large.png" alt="SuiteServices Logo">
+          </div>
+          <h1 class="headerText"><span class="pacifico">Welcome To<br/></span> Suite<strong>Services</strong></h1>
+          <h2 class="slogan"><i>enjoy your stay...</i></h2>
+          <a href="javascript:void(0);" ng-click="signInModal()" class="btn btn-primary">Sign in to Get Started!</a>
+        </div>
+      </div>
+      <div ng-if="!firstTimeVisitor">
+        <div class="form-wrap">
+          <button class="continueGuest" ng-click="getUser(null, null, true)">
+            Continue as Guest
+          </button>
+          <div class="tabs-login">
+            <h3 class="signup-tab"><a ng-class="signupLogin ? 'active' : ''" href="javascript:void(0);" ng-click="signupLogin = true">Sign Up</a></h3>
+            <h3 class="login-tab"><a ng-class="!signupLogin ? 'active' : ''" href="javascript:void(0);" ng-click="signupLogin = false">Login</a></h3>
+          </div><!--.tabs-->
+          <div class="tabs-content">
+            <div id="login-tab-content" ng-class="!signupLogin ? 'active' : ''">
+              <form class="login-form active" action="" method="post">
+                <input type="text" class="input" id="user_login" autocomplete="off" placeholder="Email">
+                <input type="password" class="input" id="user_pass" autocomplete="off" placeholder="Password">
+                <input type="checkbox" class="checkbox" id="remember_me">
+                <label for="remember_me">Remember me</label>
+
+                <input type="submit" class="button" value="Login">
+              </form><!--.login-form-->
+              <div class="help-text">
+                <p><a href="#">Forgot your password?</a></p>
+              </div><!--.help-text-->
+            </div><!--.login-tab-content-->
+            <div id="signup-tab-content" ng-class="signupLogin ? 'active' : ''">
+              <form class="signup-form" action="" method="post">
+                <input type="email" class="input" id="user_email" autocomplete="off" placeholder="Email">
+                <input type="password" class="input" id="user_pass" autocomplete="off" placeholder="Password">
+                <input type="password" class="input" id="user_pass_match" autocomplete="off" placeholder="Confirm Password">
+                <input type="submit" class="button" value="Sign Up">
+              </form><!--.login-form-->
+              <div class="help-text">
+                <p>By signing up, you agree to our</p>
+                <p><a href="#">Terms of service</a></p>
+              </div><!--.help-text-->
+            </div><!--.signup-tab-content-->
+          </div><!--.tabs-content-->
+        </div><!--.form-wrap-->
+      </div>
+    </div>
+    <div class="videobg" style="z-index: -1; position: absolute; top: 0px; left: 0px; right: 0px; bottom: 0px; overflow: hidden;"><video poster muted autoplay loop onended="this.play()" style="min-height: 100%; min-width: 100%; width: auto; height: auto; left: -400px; top: 0; position: absolute; background-size: cover; overflow: hidden;"><source src="https://demo.themeregion.com/castle/foodcastle/video/food.mp4" type="video/mp4"><source src="https://demo.themeregion.com/castle/foodcastle/video/food.webm" type="video/webm"><source src="https://demo.themeregion.com/castle/foodcastle/video/food.ogg" type="video/ogg"></video></div>
+  </div>
+  <div ng-if="user">
+    <h3 class="hotelTip">Before we can get started, we need to know where you are staying. Select your Hotel below:</h3>
+    <div class="banner">
+      <div class="banner-content">
+        <h1>Golriz Manor</h1>
+        <div class="location">Potomac, MD</div><a class="button banner-button">Select</a>
+      </div>
+    </div>
+    <!-- for past orders view -->
+    <!-- https://codepen.io/Reklino/pen/KwqwXP -->
+  </div>
+</div>

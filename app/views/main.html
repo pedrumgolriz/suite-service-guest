@@ -53,15 +53,48 @@
     </div>
     <div class="videobg" style="z-index: -1; position: absolute; top: 0px; left: 0px; right: 0px; bottom: 0px; overflow: hidden;"><video poster muted autoplay loop onended="this.play()" style="min-height: 100%; min-width: 100%; width: auto; height: auto; left: -400px; top: 0; position: absolute; background-size: cover; overflow: hidden;"><source src="https://demo.themeregion.com/castle/foodcastle/video/food.mp4" type="video/mp4"><source src="https://demo.themeregion.com/castle/foodcastle/video/food.webm" type="video/webm"><source src="https://demo.themeregion.com/castle/foodcastle/video/food.ogg" type="video/ogg"></video></div>
   </div>
-  <div ng-if="user">
-    <h3 class="hotelTip">Before we can get started, we need to know where you are staying. Select your Hotel below:</h3>
-    <div class="banner">
+  <div ng-if="user && guest.hotel == null">
+    <h3 class="hotelTip">Where are you staying?</h3>
+    <div class="banner" ng-repeat="hotel in hotelList" style="background-image: url({{hotel.banner}});" ng-click="selectHotel(hotel)">
       <div class="banner-content">
-        <h1>Golriz Manor</h1>
-        <div class="location">Potomac, MD</div><a class="button banner-button">Select</a>
+        <h1>{{hotel.name}}</h1>
+        <div class="location">{{hotel.location}}</div><a class="button banner-button">Select</a>
       </div>
     </div>
     <!-- for past orders view -->
     <!-- https://codepen.io/Reklino/pen/KwqwXP -->
+  </div>
+  <div ng-if="user && guest.hotel !== null">
+    Welcome to {{guest.hotel.name}}
+    <a href="javascript:void(0);" ng-click="clearHotel()">Not your hotel?</a>
+    <div id="banner1" class="banner-food row">
+      <div class="col-sm-4 banner-menu">
+        <a href="index.php?route=product/product&amp;product_id=43">
+          <img src="https://livedemo00.template-help.com/opencart_51775/image/cache/data/banner-4-570x246.jpg" alt="banner-4" title="banner-4">
+          <div class="s-desc">
+            <h3>Breakfast</h3>
+            <h4>Dolore ipsum</h4>
+          </div>
+        </a>
+      </div>
+      <div class="col-sm-4 banner-menu">
+        <a href="index.php?route=product/product&amp;product_id=28">
+          <img src="https://livedemo00.template-help.com/opencart_51775/image/cache/data/banner-6-570x246.jpg" alt="banner-6" title="banner-6">
+          <div class="s-desc">
+            <h3>Lunch</h3>
+            <h4>Dolore ipsum</h4>
+          </div>
+        </a>
+      </div>
+      <div class="col-sm-4 banner-menu">
+        <a href="index.php?route=product/product&amp;product_id=33">
+          <img src="https://livedemo00.template-help.com/opencart_51775/image/cache/data/banner-7-570x246.jpg" alt="banner-7" title="banner-7">
+          <div class="s-desc">
+            <h3>Dinner</h3>
+            <h4>Dolore ipsum</h4>
+          </div>
+        </a>
+      </div>
+    </div>
   </div>
 </div>

@@ -109,6 +109,8 @@ body {
 /* Custom page header */
 .header {
   margin-bottom: 10px;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 
   /* Make the masthead heading the same height as the navigation */
   h3 {
@@ -122,11 +124,14 @@ body {
 /* Custom page footer */
 .footer {
   padding-top: 19px;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(255, 255, 255, .9);
+  width: 100%;
   position: fixed;
   bottom: 0;
-  margin: 25px 0 -15px 25px;
+  margin: 25px 0 -15px 0px;
 }
+
 
 .container-narrow > hr {
   margin: 30px 0;
@@ -787,6 +792,7 @@ input {
 
 .hotelTip{
   color: black;
+  text-align: center;
 }
 
 
@@ -794,10 +800,10 @@ $margin: 32px;
 $margin-vertical: $margin * 0.85;
 
 $col-secondary: #ed4e7c;
-$col-primary: #36e2be;
+$col-primary: #444;
 
 $content-width: 480px;
-$banner-height: 200px;
+$banner-height: 195px;
 
 .button {
 	padding: 0.5em 1.5em;
@@ -826,13 +832,17 @@ $banner-height: 200px;
 .banner {
 	box-sizing: border-box;
 	height: $banner-height;
+	margin: 0 -15px;
+	color: white;
+	border: 1px solid black;
 }
 
 .banner-content {
 	box-sizing: border-box;
 	zoom: 50%;
-	width: ($content-width - $banner-height) / 2;
-	height: 50%;
+	max-width: ($content-width - $banner-height);
+	min-width: ($content-width - $banner-height) / 2;
+	height: 195px;
 	position: relative;
 	padding: $margin-vertical $margin;
 	float: right;
@@ -874,6 +884,7 @@ $banner-height: 200px;
 	position: absolute;
 	bottom: $margin;
 	right: $margin;
+	color: gold;
 }
 
 .tabs {
@@ -913,7 +924,62 @@ $banner-height: 200px;
 
 // Nothing but data URL after this
 .banner {
-	background-image: url('../images/test/golriz.jpg');
 	background-size: 100% 100%;
 	height: 100px;
+	margin-bottom: 5px;
+}
+
+.navbar-toggle{
+  float: left !important;
+  margin-left: 15px;
+}
+
+.navbar-default{
+  background-color: rgba(255, 255, 255, .9);
+  border: none !important;
+}
+
+.navbar-brand{
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.banner-food{
+  padding-top: 25px;
+  border: none;
+}
+
+.banner-menu{
+  padding-bottom: 15px;
+  & > a{
+    display: inline-grid;
+    text-decoration: none;
+  }
+  & > a > img{
+    width: 100%;
+    height: 80px;
+  }
+
+  & > a > div > h3{
+    color: white;
+    font-size: 40px;
+  }
+
+  & > a > div{
+    margin-top: -100px;
+  }
+
+  & > a > div > h4{
+    color: #b7d962;
+    font-size: 20px;
+    font-weight: 300;
+  }
+
+  & > a > div > h3,h4{
+    margin-left: 15px;
+  }
 }

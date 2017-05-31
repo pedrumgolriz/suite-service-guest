@@ -11,6 +11,7 @@ angular.module('suiteServiceGuestApp')
   .controller('NavCtrl', function ($scope) {
     $scope.isLoggedIn = localStorage.getItem('guest');
     $scope.user = JSON.parse($scope.isLoggedIn);
+    $scope.notificationsOpen = false;
     $scope.cartOpen = false;
     $scope.cartTotal = 0;
     $scope.$watch(function () {
@@ -30,5 +31,9 @@ angular.module('suiteServiceGuestApp')
         $scope.cartItems = [];
       }
       $scope.cartOpen = !$scope.cartOpen;
+    };
+
+    $scope.openNotifications = function(){
+      $scope.notificationsOpen = !$scope.notificationsOpen;
     };
   });

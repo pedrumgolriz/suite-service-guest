@@ -35,8 +35,16 @@
 
             <a class="navbar-brand" href="#!/" ng-if="user.hotel !== null">{{user.hotel.name}}</a>
             <a class="navbar-brand" href="#!/" ng-if="user.hotel == null">SuiteServices</a>
-            <span class="cart-quantity" data-quantity="1" ng-if="user.hotel !== null">
-              <button id="toggle-basket" class="header-button" ng-click="openCart()">Cart</button>
+            <span ng-if="user.hotel" class="cart-quantity" data-quantity="1" ng-if="user.hotel !== null">
+            <span ng-if="user.hotel" id="bell" ng-click="openNotifications()" class="fa fa-bell notification"></span>
+            <span ng-if="user.hotel" id="unread" class="unread">1</span> <!-- to use notifications object-->
+            <button id="toggle-basket" class="header-button" ng-click="openCart()">Cart</button>
+            </span>
+            <span class="cart-quantity" ng-if="notificationsOpen">
+
+              <div id="cd-cart">
+                Notifications
+              </div>
             </span>
             <span class="cart-quantity" ng-if="cartOpen">
               <div id="cd-cart">

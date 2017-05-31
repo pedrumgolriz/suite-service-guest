@@ -20,7 +20,15 @@ angular.module('suiteServiceGuestApp')
         zip: 20878,
         latitude: null,//set later for geolocation
         longitude: null, //set later for geolocation
-        offers: ['breakfast', 'lunch', 'dinner', 'bar', 'drinks', 'housecleaning', 'concierge', 'snacks'],
+        offers: [
+          {name: 'breakfast', open: '7:30', close: '10:30'},
+          {name: 'lunch', open: '11:00', close: '17:00'},
+          {name: 'dinner', open: '18:00', close: '23:00'},
+          {name: 'snacks', open: '00:00', close: '00:00'},
+          {name: 'bar', open: '11:00', close: '00:00'},
+          {name: 'housecleaning'},
+          {name: 'concierge'},
+        ],
         services: ['Spa', 'Golf', 'Pool', 'Shuttle', 'Business Accommodations'],
         events: [{id: 1, name: 'Test Event', date: '06/01/2017', location: 'Upper Pool Deck', description: 'lorum ipsum'}],
         foodDrink: [
@@ -44,13 +52,14 @@ angular.module('suiteServiceGuestApp')
         latitude: null,//set later for geolocation
         longitude: null, //set later for geolocation
         offers: [
-          {name: 'breakfast', open: 730, close: 1030},
-          {name:'lunch', open: 1100, close: 1700},
-          {name: 'dinner', open: 1800, close: 2300},
-          {name: 'bar', open: 1100, close: 0},
+          {name: 'breakfast', open: '7:30', close: '10:30'},
+          {name: 'lunch', open: '11:00', close: '17:00'},
+          {name: 'dinner', open: '18:00', close: '23:00'},
+          {name: 'snacks', open: '00:00', close: '00:00'},
+          {name: 'bar', open: '11:00', close: '00:00'},
           {name: 'housecleaning'},
           {name: 'concierge'},
-          {name: 'snacks', open: 0, close: 0}
+          {name: 'snacks', open: '00:00', close: '00:00'}
         ],
         services: ['Spa', 'Golf', 'Pool', 'Shuttle', 'Business Accommodations'],
         events: [{id: 1, name: 'Test Event', date: '06/01/2017', location: 'Upper Pool Deck', description: 'lorum ipsum'}],
@@ -123,5 +132,26 @@ angular.module('suiteServiceGuestApp')
     $scope.clearHotel = function(){
       $scope.guest.hotel = null;
       localStorage.removeItem('guest');
+    };
+  })
+  .filter('formatTime', function () {
+    return function (time) {
+        var parts = time.split(':');
+        var returnString = '';
+        if(parts[0] > 12){
+          parts[0] = parts[0]-12;
+          parts.push('PM');
+        }
+        else{
+          parts.push('AM');
+        }
+        if(parts[0] === '00'){
+          parts[0] = '12';
+        }
+        parts[0]=parts[0]+':';
+        for(var i in parts){
+          returnString+= parts[i];
+        }
+        return returnString;
     };
   });

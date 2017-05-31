@@ -89,6 +89,9 @@ angular.module('suiteServiceGuestApp')
 
     $scope.width = 1000;
     $scope.height = 900;
+    $scope.orderingMode = false;
+    $scope.orderType = null;
+    $scope.foodItems = [];
     $scope.firstTimeVisitor = true;
     $scope.user = false;
     $scope.signupLogin = true;
@@ -133,6 +136,27 @@ angular.module('suiteServiceGuestApp')
       $scope.guest.hotel = null;
       localStorage.removeItem('guest');
     };
+
+    $scope.order = function(sec){
+      $scope.orderingMode = true;
+      $scope.currentCategory = sec;
+      for(var i in $scope.guest.hotel.foodDrink){
+        for(var t in $scope.guest.hotel.foodDrink[i].type){
+          if($scope.guest.hotel.foodDrink[i].type[t] === sec.name){
+            $scope.foodItems.push($scope.guest.hotel.foodDrink[i]);
+          }
+        }
+      }
+    };
+
+    $scope.$on('$locationChangeStart', function(event) {
+      event.preventDefault();
+      if($scope.orderingMode){
+        $scope.orderingMode = !$scope.orderingMode;
+      }
+      $scope.foodItems = [];
+      //would you like to log out modal
+    });
   })
   .filter('formatTime', function () {
     return function (time) {

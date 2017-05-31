@@ -65,11 +65,9 @@
     <!-- https://codepen.io/Reklino/pen/KwqwXP -->
   </div>
   <div ng-if="user && guest.hotel !== null">
-    Welcome to {{guest.hotel.name}}
-    <a href="javascript:void(0);" ng-click="clearHotel()">Not your hotel?</a>
-    <div id="banner1" class="banner-food row">
-      <div class="col-sm-12 banner-menu r" ng-repeat="menuItem in guest.hotel.offers">
-        <a href="#">
+    <div id="banner1" class="banner-food row" ng-if="!orderingMode">
+      <div class="col-sm-12 banner-menu" ng-repeat="menuItem in guest.hotel.offers" ng-click="order(menuItem)">
+        <a href="javascript:void(0);">
           <img src="images/{{menuItem.name}}.jpg" alt="{{menuItem.name}}" title="{{menuItem.name}}">
           <div class="s-desc">
             <h3>{{menuItem.name}}</h3>
@@ -80,5 +78,14 @@
         </a>
       </div>
     </div>
+    <div ng-if="orderingMode">
+      <h1>{{currentCategory.name}}</h1>
+      <small ng-if="currentCategory.open && !(currentCategory.open == '00:00' && currentCategory.close == '00:00')">available between {{currentCategory.open | formatTime}} to {{currentCategory.close | formatTime}}</small>
+      <small ng-if="currentCategory.open == '00:00' && currentCategory.close == '00:00'">available all day</small>
+      <div ng-if="currentCategory.open">
+        <div ng-repeat="item in foodItems">{{item.name}}</div>
+      </div>
+    </div>
+    <a href="javascript:void(0);" ng-click="clearHotel()">Not your hotel?</a>
   </div>
 </div>

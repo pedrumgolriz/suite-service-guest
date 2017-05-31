@@ -35,6 +35,28 @@
 
             <a class="navbar-brand" href="#!/" ng-if="user.hotel !== null">{{user.hotel.name}}</a>
             <a class="navbar-brand" href="#!/" ng-if="user.hotel == null">SuiteServices</a>
+            <span class="cart-quantity" data-quantity="1" ng-if="user.hotel !== null">
+              <button id="toggle-basket" class="header-button" ng-click="openCart()">Cart</button>
+            </span>
+            <span class="cart-quantity" ng-if="cartOpen">
+              <div id="cd-cart">
+                <h2>Cart</h2>
+                <ul class="cd-cart-items" ng-if="cartItems.length > 0">
+                  <li ng-repeat="item in cartItems">
+                    {{item.name}}
+                    <div class="cd-price">{{item.price}}</div>
+                    <a href="#0" class="cd-item-remove cd-img-replace"></a>
+                  </li>
+                </ul>
+                <p ng-if="cartItems.length == 0">Your cart is empty. Add items to checkout!</p>
+
+                <div class="cd-cart-total" ng-if="cartItems.length > 0">
+                  <p>Total <span>{{cartTotal}}</span></p>
+                </div> <!-- cd-cart-total -->
+
+                <button class="checkout-btn" ng-disabled="!cartItems.length">Checkout</button>
+              </div>
+            </span>
           </div>
 
           <div class="collapse navbar-collapse" id="js-navbar-collapse">

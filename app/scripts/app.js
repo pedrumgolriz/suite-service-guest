@@ -38,4 +38,30 @@ angular
         redirectTo: '/'
       });
       $locationProvider.hashPrefix('!');
+  })
+  .directive('toggleClass', function ($document) {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+            console.log(element);
+
+            function elementClick(e) {
+                e.stopPropagation();
+                element.toggleClass(attrs.toggleClass);
+            }
+
+            function documentClick() {
+                element.removeClass(attrs.toggleClass);
+            }
+
+            element.on('click', elementClick);
+            $document.on('click', documentClick);
+
+            // remove event handlers when directive is destroyed
+            scope.$on('$destroy', function () {
+                element.off('click', elementClick);
+                $document.off('click', documentClick);
+            });
+        }
+    };
   });

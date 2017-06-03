@@ -36,4 +36,13 @@ angular.module('suiteServiceGuestApp')
     $scope.openNotifications = function(){
       $scope.notificationsOpen = !$scope.notificationsOpen;
     };
+    $scope.offClick = function(e){
+      if($scope.notificationsOpen){
+        $scope.notificationsOpen = false;
+      }
+      if($scope.cartOpen){
+        $scope.cartOpen = false;
+      }
+      e.preventDefault();
+    };
   });

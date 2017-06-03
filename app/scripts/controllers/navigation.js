@@ -21,8 +21,8 @@ angular.module('suiteServiceGuestApp')
        $scope.user = JSON.parse($scope.isLoggedIn);
     }, true);
     $scope.openCart = function(){
-      if(localStorage.getItem('cart')){
-        $scope.cartItems = JSON.parse(localStorage.getItem('order'));
+      if(localStorage.getItem('bag')){
+        $scope.cartItems = JSON.parse(localStorage.getItem('bag'));
         for(var i in $scope.cartItems){
           $scope.cartTotal+=parseInt($scope.cartItems[i].price);
         }
@@ -44,5 +44,19 @@ angular.module('suiteServiceGuestApp')
         $scope.cartOpen = false;
       }
       e.preventDefault();
+    };
+
+    $scope.removeFromBag = function(item){
+      $scope.cartTotal = 0;
+      for(var i in $scope.cartItems){
+        if($scope.cartItems[i].id === item.id){
+          $scope.cartItems.splice(i, 1);
+        }
+        if($scope.cartItems.length > 0){
+          $scope.cartTotal+=parseInt($scope.cartItems[i].price);
+        }
+      }
+      localStorage.removeItem('bag');
+      localStorage.setItem('bag', JSON.stringify($scope.cartItems));
     };
   });

@@ -58,8 +58,7 @@ angular.module('suiteServiceGuestApp')
           {name: 'snacks', open: '00:00', close: '00:00'},
           {name: 'bar', open: '11:00', close: '00:00'},
           {name: 'housecleaning'},
-          {name: 'concierge'},
-          {name: 'snacks', open: '00:00', close: '00:00'}
+          {name: 'concierge'}
         ],
         services: ['Spa', 'Golf', 'Pool', 'Shuttle', 'Business Accommodations'],
         events: [{id: 1, name: 'Test Event', date: '06/01/2017', location: 'Upper Pool Deck', description: 'lorum ipsum'}],
@@ -92,6 +91,7 @@ angular.module('suiteServiceGuestApp')
     $scope.orderingMode = false;
     $scope.orderType = null;
     $scope.foodItems = [];
+    $scope.bag = [];
     $scope.firstTimeVisitor = true;
     $scope.user = false;
     $scope.signupLogin = true;
@@ -157,6 +157,11 @@ angular.module('suiteServiceGuestApp')
       $scope.foodItems = [];
       //would you like to log out modal
     });
+
+    $scope.addToBag = function(item){
+      $scope.bag.push(item);
+      localStorage.setItem('bag', JSON.stringify($scope.bag));
+    };
   })
   .filter('formatTime', function () {
     return function (time) {

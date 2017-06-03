@@ -83,7 +83,9 @@
       <small ng-if="currentCategory.open && !(currentCategory.open == '00:00' && currentCategory.close == '00:00')">available between {{currentCategory.open | formatTime}} to {{currentCategory.close | formatTime}}</small>
       <small ng-if="currentCategory.open == '00:00' && currentCategory.close == '00:00'">available all day</small>
       <div ng-if="currentCategory.open">
-        <div ng-repeat="item in foodItems">{{item.name}}</div>
+        <div ng-repeat="item in foodItems">{{item.name}}
+          <a href="javascript:void(0);" ng-click="addToBag(item)">add to bag</a>
+        </div>
       </div>
     </div>
     <a href="javascript:void(0);" ng-click="clearHotel()">Not your hotel?</a>

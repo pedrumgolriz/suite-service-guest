@@ -61,8 +61,8 @@
                 <ul class="cd-cart-items" ng-if="cartItems.length > 0">
                   <li ng-repeat="item in cartItems">
                     {{item.name}}
-                    <div class="cd-price">{{item.price}}</div>
-                    <a href="#0" class="cd-item-remove cd-img-replace"></a>
+                    <span>{{item.price}}</span>
+                    <a href="javascript:void(0);" class="cd-item-remove cd-img-replace" ng-click="removeFromBag(item)"></a>
                   </li>
                 </ul>
                 <p ng-if="cartItems.length == 0">Your bag is empty. Add items to checkout!</p>

@@ -8,6 +8,8 @@ This is the guest side app of SuiteServices
 
 ## Build & development
 
+Run npm install and bower install to install dependencies
+
 Run `grunt` for building and `grunt serve` for preview.
 
 ## Testing

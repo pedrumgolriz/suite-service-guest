@@ -135,6 +135,7 @@ angular.module('suiteServiceGuestApp')
     $scope.clearHotel = function(){
       $scope.guest.hotel = null;
       localStorage.removeItem('guest');
+      localStorage.removeItem('bag');
     };
 
     $scope.order = function(sec){
@@ -150,17 +151,23 @@ angular.module('suiteServiceGuestApp')
     };
 
     $scope.$on('$locationChangeStart', function(event) {
-      event.preventDefault();
       if($scope.orderingMode){
         $scope.orderingMode = !$scope.orderingMode;
+        event.preventDefault();
+        $scope.foodItems = [];
       }
-      $scope.foodItems = [];
       //would you like to log out modal
     });
 
     $scope.addToBag = function(item){
-      $scope.bag.push(item);
-      localStorage.setItem('bag', JSON.stringify($scope.bag));
+      var items = JSON.parse(localStorage.getItem('bag'));
+      var bag = [];
+      for(var i in items){
+        bag.push(items[i]);
+      }
+      bag.push(item);
+      localStorage.removeItem('bag');
+      localStorage.setItem('bag', JSON.stringify(bag));
     };
   })
   .filter('formatTime', function () {

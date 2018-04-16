@@ -34,6 +34,11 @@ angular
         controller: 'OrderCtrl',
         controllerAs: 'order'
       })
+      .when('/checkout', {
+        templateUrl: 'views/checkout.html',
+        controller: 'CheckoutCtrl',
+        controllerAs: 'checkout'
+      })
       .otherwise({
         redirectTo: '/'
       });

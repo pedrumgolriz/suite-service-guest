@@ -1088,7 +1088,6 @@ $banner-height: 195px;
 
 .cart-quantity{
   float: right;
-  margin-top: -5px;
 }
 
 #toggle-basket {
@@ -1143,6 +1142,7 @@ $banner-height: 195px;
 
 		li {
 			position: relative;
+			list-style: none;
 			padding: 1em;
 			border-top: 1px solid black;
 
@@ -1240,6 +1240,23 @@ $banner-height: 195px;
   position: relative;
   bottom: 20px;
   right: 8px;
+  animation-delay: 1s;
+  animation-duration: 0.3s;
+}
+
+.unread-bag{
+  display: inline-block;
+  color: white;
+  font-size: 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+  min-width: 25px;
+  margin-right: -25px;
+  text-align: center;
+  padding: 2px 3px;
+  border-radius: 30px;
+  position: relative;
+  bottom: 55px;
+  right: -35px;
   animation-delay: 1s;
   animation-duration: 0.3s;
 }

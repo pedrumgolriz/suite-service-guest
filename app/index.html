@@ -35,10 +35,12 @@
 
             <a class="navbar-brand" href="#!/" ng-if="user.hotel !== null">{{user.hotel.name}}</a>
             <a class="navbar-brand" href="#!/" ng-if="user.hotel == null">SuiteServices</a>
-            <span ng-if="user.hotel" class="cart-quantity" data-quantity="1" ng-if="user.hotel !== null">
+            <span ng-if="user.hotel" class="cart-quantity" data-quantity="{{notifications.length}}" ng-if="user.hotel !== null && notifications.length > 0">
             <span ng-if="user.hotel" id="bell" ng-click="openNotifications()" class="fa fa-bell notification"></span>
-            <span ng-if="user.hotel" id="unread" class="unread">1</span> <!-- to use notifications object-->
-            <button id="toggle-basket" class="header-button" ng-click="openCart()">Cart</button>
+            <span ng-if="user.hotel && notifications.length > 0" id="unread" class="unread">{{notifications.length}}</span> <!-- to use notifications object-->
+            <span ng-if="user.hotel" class="cart-quantity" data-quantity="{{cartItems.length}}" ng-if="user.hotel !== null && cartItems.length > 0">
+            <button id="toggle-basket" class="header-button" ng-click="openCart()">Bag</button>
+            <span ng-if="user.hotel && cartItems.length > 0" id="cartItems" class="unread-bag">{{cartItems.length}}</span>
             </span>
             <span class="cart-quantity" ng-if="notificationsOpen">
 
@@ -47,10 +49,10 @@
                 <ul class="notifications-list show-notifications">
                   <!--<li class="item no-data">You don't have notifications</li>-->
                   <li class="item expired" data-id="6">
-                    <span class="details">
-                      <span class="title">Your recent request has been completed.</span>
+                    <span class="details" ng-repeat="alert in notifications track by $index">
+                      <span class="title">{{alert.title}}</span>
                     </span>
-                    <button type="button" class="button-default button-dismiss">×</button>
+                    <button ng-if="notifications.length > 0" type="button" class="button-default button-dismiss" ng-click="notifications.splice($index, 1)">×</button>
                   </li>
                 </ul>
               </div>
@@ -71,7 +73,7 @@
                   <p>Total <span>{{cartTotal}}</span></p>
                 </div> <!-- cd-cart-total -->
 
-                <button ng-class="cartItems.length == 0 ? 'inactive' : ''" class="checkout-btn" ng-disabled="cartItems.length == 0">Checkout</button>
+                <button ng-click="checkout(cartItems)" ng-class="cartItems.length == 0 ? 'inactive' : ''" class="checkout-btn" ng-disabled="cartItems.length == 0">Checkout</button>
               </div>
             </span>
           </div>
@@ -131,6 +133,7 @@
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/order.js"></script>
+        <script src="scripts/controllers/checkout.js"></script>
         <!-- endbuild -->
 </body>
 </html>

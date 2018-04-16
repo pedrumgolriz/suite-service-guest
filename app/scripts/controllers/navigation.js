@@ -8,12 +8,14 @@
  * Controller of the suiteServiceGuestApp
  */
 angular.module('suiteServiceGuestApp')
-  .controller('NavCtrl', function ($scope) {
+  .controller('NavCtrl', function ($scope, $location) {
     $scope.isLoggedIn = localStorage.getItem('guest');
     $scope.user = JSON.parse($scope.isLoggedIn);
     $scope.notificationsOpen = false;
     $scope.cartOpen = false;
+    $scope.notifications = [{title: 'your recent request has been completed.'}];
     $scope.cartTotal = 0;
+    $scope.cartItems = JSON.parse(localStorage.getItem('bag'));
     $scope.$watch(function () {
        return localStorage.getItem('guest');
     }, function () {
@@ -23,6 +25,7 @@ angular.module('suiteServiceGuestApp')
     $scope.openCart = function(){
       if(localStorage.getItem('bag')){
         $scope.cartItems = JSON.parse(localStorage.getItem('bag'));
+        $scope.cartTotal = 0;
         for(var i in $scope.cartItems){
           $scope.cartTotal+=parseInt($scope.cartItems[i].price);
         }
@@ -58,5 +61,11 @@ angular.module('suiteServiceGuestApp')
       }
       localStorage.removeItem('bag');
       localStorage.setItem('bag', JSON.stringify($scope.cartItems));
+    };
+
+    $scope.checkout = function(cart){
+      localStorage.removeItem('bag');
+      localStorage.setItem('bag', JSON.stringify(cart));
+      $location.path('checkout');
     };
   });
